@@ -1,0 +1,238 @@
+.app-footer {
+  background: #1F2933;
+  color: #E5E7EB;
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem 1.5rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr 1fr;
+  gap: 2.5rem;
+}
+
+/* Brand Section */
+.brand-section {
+  max-width: 280px;
+}
+
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  margin-bottom: 0.75rem;
+  filter: brightness(0) invert(1);
+}
+
+.footer-description {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #9CA3AF;
+}
+
+/* Section Headings */
+.footer-heading {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+/* Links */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+  color: #9CA3AF;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #FFFFFF;
+}
+
+/* Company & Contact */
+.footer-contact {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.company-name {
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.company-address {
+  color: #9CA3AF;
+  margin-bottom: 0.75rem;
+}
+
+.contact-item {
+  margin-bottom: 0.75rem;
+  color: #9CA3AF;
+}
+
+.contact-item strong {
+  color: #E5E7EB;
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.85rem;
+}
+
+.contact-item a {
+  color: #9CA3AF;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 0.85rem;
+}
+
+.contact-item a:hover {
+  color: #FFFFFF;
+}
+
+/* App Section */
+.app-description {
+  font-size: 0.85rem;
+  color: #9CA3AF;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.app-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.app-button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.9rem;
+  background: #2D3748;
+  border: 1px solid #4A5568;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.app-button:hover {
+  background: #374151;
+  border-color: #6B7280;
+}
+
+.app-icon {
+  font-size: 1.3rem;
+}
+
+.app-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-label {
+  font-size: 0.65rem;
+  color: #9CA3AF;
+  text-transform: uppercase;
+}
+
+.app-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  background: #111827;
+  border-top: 1px solid #374151;
+}
+
+.footer-bottom-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.25rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: #9CA3AF;
+  margin: 0;
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+}
+
+.footer-bottom-links a {
+  color: #9CA3AF;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-bottom-links a:hover {
+  color: #FFFFFF;
+}
+
+.separator {
+  color: #4A5568;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .footer-content {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .brand-section {
+    max-width: 100%;
+  }
+
+  .app-buttons {
+    align-items: stretch;
+  }
+
+  .app-button {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .footer-bottom-content {
+    padding: 1.25rem 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .footer-bottom-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

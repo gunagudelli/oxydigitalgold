@@ -1,0 +1,290 @@
+.buy-gold-page {
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+.buy-hero {
+  background: var(--bg-surface);
+  padding: 2.5rem 3rem 2rem;
+  border-bottom: 1px solid var(--border-light);
+  text-align: center;
+}
+
+.hero-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+}
+
+.buy-hero h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.buy-hero p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.live-rate-box {
+  position: absolute;
+  right: 0;
+  bottom: -1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-surface);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.rate-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.rate-amount {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+.live-dot {
+  color: var(--success);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.buy-main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.left-section,
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.portfolio-box,
+.trust-box,
+.buy-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 1.75rem;
+}
+
+.box-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+}
+
+.portfolio-amount {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-weight {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.portfolio-profit {
+  display: inline-block;
+  background: var(--success-light);
+  color: var(--success);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.trust-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.trust-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.trust-emoji {
+  font-size: 1.35rem;
+}
+
+.trust-heading {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.trust-subtext {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.right-section {
+  position: sticky;
+  top: 100px;
+}
+
+.mode-toggle {
+  display: flex;
+  background: var(--beige-light);
+  border-radius: 8px;
+  padding: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mode-btn.active {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.buy-input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.2s;
+}
+
+.buy-input:focus {
+  outline: none;
+  border-color: var(--neutral-soft);
+  box-shadow: var(--shadow-hover);
+}
+
+.conversion-info {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.quick-chips {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.chip-btn {
+  padding: 0.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chip-btn:hover {
+  background: var(--beige-light);
+  border-color: var(--neutral-soft);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-hover);
+}
+
+.primary-buy-btn {
+  width: 100%;
+  padding: 0.875rem;
+  background: var(--gold-primary);
+  color: var(--bg-surface);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 1rem;
+}
+
+.primary-buy-btn:hover {
+  background: var(--gold-hover);
+}
+
+.buy-info {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 968px) {
+  .buy-hero {
+    padding: 2rem 1.5rem;
+  }
+
+  .buy-hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .live-rate-box {
+    position: static;
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .buy-main-content {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .right-section {
+    position: static;
+  }
+
+  .portfolio-amount {
+    font-size: 1.75rem;
+  }
+
+  .quick-chips {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .primary-buy-btn {
+    padding: 1rem;
+  }
+}

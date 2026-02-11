@@ -1,0 +1,130 @@
+.payment-success-page {
+  background: #fafafa;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.success-content {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.success-icon {
+  margin-bottom: 2rem;
+  animation: scaleIn 0.4s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.success-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.75rem 0;
+}
+
+.success-message {
+  font-size: 1rem;
+  color: #666;
+  margin: 0 0 2.5rem 0;
+  line-height: 1.5;
+}
+
+.transaction-details {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.detail-value {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-align: right;
+}
+
+.success-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.action-button {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-button.primary {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.action-button.primary:hover {
+  background: #000;
+}
+
+.action-button.secondary {
+  background: #fff;
+  color: #1a1a1a;
+  border: 1px solid #d0d0d0;
+}
+
+.action-button.secondary:hover {
+  background: #fafafa;
+  border-color: #1a1a1a;
+}
+
+.confirmation-note {
+  font-size: 0.85rem;
+  color: #999;
+  margin: 0;
+}
+
+@media (max-width: 968px) {
+  .payment-success-page {
+    padding: 2rem 1.5rem;
+  }
+
+  .success-actions {
+    flex-direction: column;
+  }
+}

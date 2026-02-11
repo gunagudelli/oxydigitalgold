@@ -1,0 +1,236 @@
+.portfolio-page {
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+.portfolio-header {
+  background: var(--bg-surface);
+  padding: 2.5rem 3rem 2rem;
+  border-bottom: 1px solid var(--border-light);
+  text-align: center;
+}
+
+.header-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.portfolio-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-header p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.portfolio-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--gold-primary);
+  margin-bottom: 0.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.gain-positive {
+  color: var(--success);
+}
+
+.stat-subtext {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+.action-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.action-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn.primary {
+  background: var(--gold-primary);
+  color: var(--bg-surface);
+}
+
+.action-btn.primary:hover {
+  background: var(--gold-hover);
+}
+
+.action-btn.secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+}
+
+.action-btn.secondary:hover {
+  background: var(--beige-light);
+  border-color: var(--neutral-soft);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-hover);
+}
+
+.transactions-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.transactions-section h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transactions-table thead {
+  background: var(--bg-subtle);
+}
+
+.transactions-table th {
+  text-align: left;
+  padding: 0.875rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-light);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.transactions-table td {
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-light);
+  font-variant-numeric: tabular-nums;
+}
+
+.transactions-table tbody tr:hover {
+  background: var(--beige-light);
+}
+
+.type-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.type-badge.buy {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.type-badge.sell {
+  background: var(--error-light);
+  color: var(--error);
+}
+
+.status-badge {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 968px) {
+  .portfolio-header {
+    padding: 2rem 1.5rem;
+  }
+
+  .portfolio-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .portfolio-content {
+    padding: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .action-row {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .transactions-section {
+    padding: 1.25rem;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .transactions-table {
+    font-size: 0.8rem;
+  }
+
+  .transactions-table th,
+  .transactions-table td {
+    padding: 0.75rem 0.5rem;
+  }
+}

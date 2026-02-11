@@ -1,0 +1,128 @@
+.sell-success-page {
+  background: var(--bg-primary);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.success-container {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.success-icon {
+  margin-bottom: 2rem;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.success-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.success-message {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+}
+
+.success-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.success-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 0;
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.detail-value {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.detail-value.amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 0.75rem 0;
+}
+
+.success-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn.primary {
+  background: var(--gold-primary);
+  color: var(--bg-surface);
+}
+
+.action-btn.primary:hover {
+  background: var(--gold-hover);
+}
+
+.action-btn.secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+}
+
+.action-btn.secondary:hover {
+  background: var(--beige-light);
+  border-color: var(--neutral-soft);
+}
+
+@media (max-width: 968px) {
+  .success-title {
+    font-size: 1.5rem;
+  }
+
+  .success-actions {
+    flex-direction: column;
+  }
+}

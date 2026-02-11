@@ -1,0 +1,40 @@
+:root {
+  /* Base Colors */
+  --bg-primary: #FAFAF8;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F5F3F0;
+  
+  /* Gold Accent - Use Sparingly */
+  --gold-primary: #B8935A;
+  --gold-hover: #A67F4A;
+  --gold-light: #F8F6F2;
+  
+  /* Warm Neutrals - Primary UI Colors */
+  --neutral-warm: #E8E6E1;
+  --neutral-soft: #D4D2CD;
+  --beige-light: #F2F0EB;
+  
+  /* Text Colors */
+  --text-primary: #1F2933;
+  --text-secondary: #6B7280;
+  --text-tertiary: #9CA3AF;
+  --text-disabled: #D1D5DB;
+  
+  /* Borders & Dividers */
+  --border-light: #E5E7EB;
+  --border-medium: #D1D5DB;
+  
+  /* Feedback Colors */
+  --success: #2E7D32;
+  --success-light: #E8F5E9;
+  --error: #C85A54;
+  --error-light: #FDECEA;
+  --warning: #D4A574;
+  --warning-light: #FDF6ED;
+  
+  /* Shadows - For Interaction States */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

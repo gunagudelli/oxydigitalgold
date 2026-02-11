@@ -1,0 +1,260 @@
+.payment-method-page {
+  background: #fafafa;
+  min-height: 100vh;
+  padding: 2rem 3rem 4rem;
+}
+
+.payment-method-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.payment-header-section {
+  margin-bottom: 2rem;
+}
+
+.payment-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.payment-left {
+  position: sticky;
+  top: 2rem;
+}
+
+.order-summary-sidebar {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.sidebar-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 1.5rem 0;
+}
+
+.summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.summary-label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.summary-value {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.summary-divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 0.75rem 0;
+}
+
+.summary-row.total {
+  padding-top: 0.75rem;
+}
+
+.summary-row.total .summary-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.summary-row.total .summary-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.payment-methods-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.methods-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 1.5rem 0;
+}
+
+.methods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.method-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.method-option:hover {
+  border-color: #1a1a1a;
+  background: #fafafa;
+}
+
+.method-option:has(.method-radio:checked) {
+  border-color: #1a1a1a;
+  background: #fafafa;
+}
+
+.method-radio {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d0d0d0;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.method-radio:checked {
+  border-color: #1a1a1a;
+}
+
+.method-radio:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: #1a1a1a;
+  border-radius: 50%;
+}
+
+.method-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.method-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.method-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.recommended-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #2e7d32;
+  background: #e8f5e9;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.method-desc {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.radio-indicator {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d0d0d0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+
+.method-option:has(.method-radio:checked) .radio-indicator {
+  border-color: #1a1a1a;
+}
+
+.radio-dot {
+  width: 10px;
+  height: 10px;
+  background: #1a1a1a;
+  border-radius: 50%;
+}
+
+.pay-button {
+  width: 100%;
+  padding: 1rem;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 1rem;
+}
+
+.pay-button:hover:not(.disabled) {
+  background: #000;
+}
+
+.pay-button.disabled {
+  background: #d0d0d0;
+  cursor: not-allowed;
+}
+
+.security-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+@media (max-width: 968px) {
+  .payment-method-page {
+    padding: 2rem 1.5rem;
+  }
+
+  .payment-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-left {
+    position: static;
+  }
+}

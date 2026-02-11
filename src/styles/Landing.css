@@ -1,0 +1,272 @@
+.landing-page {
+  background: var(--bg-primary);
+}
+
+.hero-section {
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-subtle) 100%);
+  padding: 3rem 3rem 3.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.hero-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.live-price-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--bg-surface);
+  padding: 0.975rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.price-label {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.price-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+.live-indicator {
+  color: var(--success);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.cta-primary {
+  padding: 0.875rem 2rem;
+  background: var(--gold-primary);
+  color: var(--bg-surface);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  margin-left: 12px; /* 👈 little right move */
+}
+
+
+.cta-primary:hover {
+  background: var(--gold-hover);
+}
+
+.why-section {
+  padding: 3.5rem 3rem;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  font-size: Bold;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--text-primary);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: var(--bg-surface);
+  padding: 1.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--neutral-soft);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.875rem;
+}
+
+.feature-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.cta-section {
+  background: var(--bg-surface);
+  padding: 3.5rem 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border-light);
+}
+
+.cta-section h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.cta-section p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-primary {
+  padding: 1rem 2rem;
+  background: var(--gold-primary);
+  color: var(--bg-surface);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--gold-hover);
+}
+
+.btn-secondary {
+  padding: 1rem 2rem;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: var(--beige-light);
+  border-color: var(--neutral-soft);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-hover);
+}
+
+@media (max-width: 968px) {
+  .hero-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .live-price-banner {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .price-label {
+    font-size: 0.85rem;
+  }
+
+  .price-value {
+    font-size: 1.25rem;
+  }
+
+  .cta-primary {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .why-section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+  }
+
+  .cta-section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta-section p {
+    font-size: 0.95rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding: 1rem;
+  }
+}
