@@ -26,7 +26,7 @@ const BuyGold = ({ onNavigate }: BuyGoldProps) => {
       <section className="buy-hero">
         <div className="hero-wrapper">
           <h1>Buy Digital Gold</h1>
-          <p>24K • 99.5% Pure • Secure Vault Storage</p>
+          <p>24K • 99.5% Pure • Secure Vault Storage.</p>
           <div className="live-rate-box">
             <span className="rate-text">Live Gold Rate:</span>
             <span className="rate-amount">₹{goldRate.toLocaleString()} / gram</span>
