@@ -1,7 +1,7 @@
 .payment-details-page {
   background: #fafafa;
   min-height: 100vh;
-  padding: 1rem 1.5rem 4rem;
+  padding: 1rem 1.5rem 3rem;
 }
 
 .details-container {
@@ -171,17 +171,24 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  padding: 0 2rem 2rem 2rem;
 }
 
 .action-btn {
   flex: 1;
-  padding: 0.875rem;
+  padding: 1rem 1.5rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.action-btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
 }
 
 .action-btn.primary {
@@ -227,6 +234,11 @@
 
   .details-actions {
     flex-direction: column;
+    padding: 0 1.5rem 2rem 1.5rem;
+  }
+
+  .action-btn {
+    padding: 1.125rem;
   }
 }
 

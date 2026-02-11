@@ -14,6 +14,8 @@ import PaymentDetails from './pages/PaymentDetails';
 import SellSummary from './pages/SellSummary';
 import SellProcessing from './pages/SellProcessing';
 import SellSuccess from './pages/SellSuccess';
+import BankAccount from './pages/BankAccount';
+import TermsConditions from './pages/TermsConditions';
 import Portfolio from './pages/Portfolio';
 import FAQ from './pages/FAQ';
 
@@ -51,6 +53,10 @@ function App() {
         return <PaymentDetails onNavigate={handleNavigate} transactionData={transactionData} />;
       case 'sell-summary':
         return <SellSummary onNavigate={handleNavigate} sellData={transactionData} />;
+      case 'bank-account':
+        return <BankAccount onNavigate={handleNavigate} sellData={transactionData} />;
+      case 'terms-conditions':
+        return <TermsConditions onNavigate={handleNavigate} termsData={transactionData} flowType={transactionData?.flowType || 'buy'} />;
       case 'sell-processing':
         return <SellProcessing onNavigate={handleNavigate} sellData={transactionData} />;
       case 'sell-success':

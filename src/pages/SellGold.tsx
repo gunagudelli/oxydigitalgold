@@ -217,6 +217,14 @@ const SellGold = ({ onNavigate }: SellGoldProps) => {
               {!amount || !!error ? 'Enter Valid Amount' : 'Review Sell Order'}
             </button>
 
+            <div className="inline-disclaimer">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="7" stroke="#999" strokeWidth="1.5"/>
+                <path d="M8 7V11M8 5V5.5" stroke="#999" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+              <span>Sell price is based on live market rate and may change</span>
+            </div>
+
             <div className="sell-info">
               Funds will be credited to your registered bank account
             </div>

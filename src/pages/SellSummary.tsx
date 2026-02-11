@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../styles/SellSummary.css';
+import TermsModal from '../components/TermsModal';
 
 interface SellSummaryProps {
   onNavigate: (page: string, data?: any) => void;
@@ -14,9 +15,12 @@ interface SellSummaryProps {
 
 const SellSummary = ({ onNavigate, sellData }: SellSummaryProps) => {
   const { amount, sellMode, sellRate, lockedAt } = sellData;
-  const [timeLeft, setTimeLeft] = useState(15);
+  const [timeLeft, setTimeLeft] = useState(180); // 3 minutes = 180 seconds
   const [isPriceLocked, setIsPriceLocked] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isAccepted, setIsAccepted] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [showError, setShowError] = useState(false);
   
   const numAmount = parseFloat(amount);
   
@@ -38,7 +42,7 @@ const SellSummary = ({ onNavigate, sellData }: SellSummaryProps) => {
     const interval = setInterval(() => {
       const now = Date.now();
       const elapsed = Math.floor((now - lockTime) / 1000);
-      const remaining = 15 - elapsed;
+      const remaining = 180 - elapsed;
       
       if (remaining <= 0) {
         setIsPriceLocked(false);
@@ -55,11 +59,16 @@ const SellSummary = ({ onNavigate, sellData }: SellSummaryProps) => {
   const handleConfirm = () => {
     if (!isPriceLocked) return;
     
+    if (!isAccepted) {
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
+      return;
+    }
+    
     setIsProcessing(true);
     
-    // Simulate brief processing delay for better UX
     setTimeout(() => {
-      onNavigate('sell-processing', {
+      onNavigate('bank-account', {
         grams,
         rupees: rupees.toFixed(2),
         processingFee: processingFee.toFixed(2),
@@ -67,7 +76,7 @@ const SellSummary = ({ onNavigate, sellData }: SellSummaryProps) => {
         finalAmount: finalAmount.toFixed(2),
         sellRate
       });
-    }, 500);
+    }, 300);
   };
 
   const handleRefreshPrice = () => {
@@ -83,10 +92,10 @@ const SellSummary = ({ onNavigate, sellData }: SellSummaryProps) => {
           </button>
           <h1 className="page-title">Review Sell Order</h1>
           {isPriceLocked && (
-            <div className={`price-lock-timer ${timeLeft <= 5 ? 'warning' : ''}`}>
+            <div className={`price-lock-timer ${timeLeft <= 30 ? 'warning' : ''}`}>
               <span className="timer-icon">🔒</span>
               <span className="timer-text">
-                Price locked • {timeLeft}s remaining
+                Price locked • {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')} remaining
               </span>
             </div>
           )}
@@ -100,76 +109,88 @@ const SellSummary = ({ onNavigate, sellData }: SellSummaryProps) => {
 
         <div className="summary-content">
           <div className="summary-card">
-            <div className="card-section">
-              <h2 className="section-title">Transaction Details</h2>
-              
-              <div className="detail-grid">
-                <div className="detail-item">
-                  <span className="detail-label">Locked Sell Rate</span>
-                  <span className="detail-value highlight">₹{sellRate.toLocaleString()}/gram</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="detail-label">Quantity to Sell</span>
-                  <span className="detail-value">{grams} grams</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="detail-label">Gross Sell Value</span>
-                  <span className="detail-value">₹{rupees.toLocaleString()}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="divider"></div>
-
-            <div className="card-section">
-              <h2 className="section-title">Payout Calculation</h2>
-              
-              <div className="breakdown-list">
-                <div className="breakdown-row">
-                  <span className="breakdown-label">Gross Sell Value</span>
-                  <span className="breakdown-value">₹{rupees.toLocaleString()}</span>
-                </div>
-                
-                <div className="breakdown-row deduction">
-                  <span className="breakdown-label">Processing Fee (1%)</span>
-                  <span className="breakdown-value">- ₹{processingFee.toFixed(2)}</span>
-                </div>
-
-                <div className="breakdown-row deduction">
-                  <span className="breakdown-label">TDS (1%)</span>
-                  <span className="breakdown-value">- ₹{tds.toFixed(2)}</span>
-                </div>
-                
-                <div className="breakdown-row total-row">
-                  <span className="breakdown-label">Net Payout</span>
-                  <span className="breakdown-value">₹{finalAmount.toLocaleString()}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="info-box">
+            <div className="info-box warning-box">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="7" stroke="#0369a1" strokeWidth="1.5"/>
-                <path d="M8 7V11M8 5V5.5" stroke="#0369a1" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M8 1L1 15H15L8 1Z" stroke="#d97706" strokeWidth="1.5" strokeLinejoin="round"/>
+                <path d="M8 6V9M8 11V11.5" stroke="#d97706" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
-              <div>
-                <p><strong>Settlement:</strong> T+1 working day</p>
-                <p>Funds will be credited to your registered bank account within 1 working day from transaction date.</p>
+              <span>Price locked for {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')} • Transaction cannot be cancelled • T+1 settlement</span>
+            </div>
+
+            <div className="details-grid">
+              <div className="card-section">
+                <h2 className="section-title">Sell Details</h2>
+                
+                <div className="detail-grid">
+                  <div className="detail-item">
+                    <span className="detail-label">Sell Rate</span>
+                    <span className="detail-value">₹{sellRate.toLocaleString()}/g</span>
+                  </div>
+                  
+                  <div className="detail-item">
+                    <span className="detail-label">Quantity</span>
+                    <span className="detail-value">{grams} grams</span>
+                  </div>
+                  
+                  <div className="detail-item">
+                    <span className="detail-label">Purity</span>
+                    <span className="detail-value">24K • 99.5%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card-section">
+                <h2 className="section-title">Payout Breakdown</h2>
+                
+                <div className="breakdown-list">
+                  <div className="breakdown-row">
+                    <span className="breakdown-label">Gross Value</span>
+                    <span className="breakdown-value">₹{rupees.toLocaleString()}</span>
+                  </div>
+                  
+                  <div className="breakdown-row">
+                    <span className="breakdown-label">Processing (1%)</span>
+                    <span className="breakdown-value">- ₹{processingFee.toFixed(2)}</span>
+                  </div>
+
+                  <div className="breakdown-row">
+                    <span className="breakdown-label">TDS (1%)</span>
+                    <span className="breakdown-value">- ₹{tds.toFixed(2)}</span>
+                  </div>
+                  
+                  <div className="breakdown-row total-row">
+                    <span className="breakdown-label">Net Payout</span>
+                    <span className="breakdown-value">₹{finalAmount.toLocaleString()}</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="legal-disclaimer">
-              <h4>Terms & Regulatory Compliance</h4>
-              <ul>
-                <li>This transaction is governed by RBI guidelines and platform terms of service</li>
-                <li>Sell rates are market-linked and valid only during the lock period</li>
-                <li>TDS deducted as per Income Tax Act, 1961 (Section 194Q)</li>
-                <li>Processing fee covers transaction, vault, and compliance costs</li>
-                <li>Settlement timeline subject to bank processing and working days</li>
-                <li>Transaction cannot be reversed once confirmed</li>
-              </ul>
+            <div className="terms-acceptance-inline">
+              <label className="checkbox-container">
+                <input 
+                  type="checkbox" 
+                  checked={isAccepted}
+                  onChange={(e) => setIsAccepted(e.target.checked)}
+                  disabled={!isPriceLocked}
+                />
+                <span className="checkmark"></span>
+                <span className="checkbox-label">
+                  I agree to the{' '}
+                  <button 
+                    type="button"
+                    className="terms-link" 
+                    onClick={() => setShowTermsModal(true)}
+                  >
+                    Terms & Conditions
+                  </button>
+                </span>
+              </label>
+              {showError && (
+                <div className="error-message-terms">
+                  Please accept the Terms & Conditions to continue
+                </div>
+              )}
             </div>
 
             {isPriceLocked ? (
@@ -191,6 +212,12 @@ const SellSummary = ({ onNavigate, sellData }: SellSummaryProps) => {
           </div>
         </div>
       </div>
+
+      <TermsModal 
+        isOpen={showTermsModal} 
+        onClose={() => setShowTermsModal(false)}
+        flowType="sell"
+      />
     </div>
   );
 };

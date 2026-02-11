@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import '../styles/OrderSummary.css';
+import TermsModal from '../components/TermsModal';
 
 interface OrderSummaryProps {
   onNavigate: (page: string, data?: any) => void;
@@ -11,6 +13,12 @@ interface OrderSummaryProps {
 
 const OrderSummary = ({ onNavigate, orderData }: OrderSummaryProps) => {
   const { amount, buyMode, goldRate } = orderData;
+  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes = 300 seconds
+  const [isPriceLocked, setIsPriceLocked] = useState(true);
+  const [isAccepted, setIsAccepted] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [showError, setShowError] = useState(false);
+  
   const numAmount = parseFloat(amount);
   
   const grams = buyMode === 'rupees' 
@@ -24,7 +32,37 @@ const OrderSummary = ({ onNavigate, orderData }: OrderSummaryProps) => {
   const gst = rupees * 0.03;
   const total = rupees + gst;
 
+  // Price lock countdown
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          setIsPriceLocked(false);
+          clearInterval(interval);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
   const handleProceed = () => {
+    if (!isPriceLocked) return;
+    
+    if (!isAccepted) {
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
+      return;
+    }
+    
     onNavigate('payment-method', {
       grams,
       rupees: rupees.toFixed(2),
@@ -42,90 +80,123 @@ const OrderSummary = ({ onNavigate, orderData }: OrderSummaryProps) => {
             ← Back to Buy Gold
           </button>
           <h1 className="page-title">Review Your Order</h1>
+          {isPriceLocked && (
+            <div className={`price-lock-timer ${timeLeft <= 60 ? 'warning' : ''}`}>
+              <span className="timer-icon">🔒</span>
+              <span className="timer-text">
+                Price locked • {formatTime(timeLeft)} remaining
+              </span>
+            </div>
+          )}
+          {!isPriceLocked && (
+            <div className="price-expired">
+              <span className="expired-icon">⚠️</span>
+              <span className="expired-text">Price lock expired - Please refresh</span>
+            </div>
+          )}
         </div>
 
         <div className="order-content">
           <div className="order-details-card">
-            <div className="card-section">
-              <h2 className="section-title">Order Details</h2>
-              
-              <div className="detail-grid">
-                <div className="detail-item">
-                  <span className="detail-label">Gold Rate</span>
-                  <span className="detail-value">₹{goldRate.toLocaleString()} per gram</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="detail-label">Quantity</span>
-                  <span className="detail-value">{grams} grams</span>
-                </div>
-                
-                <div className="detail-item">
-                  <span className="detail-label">Purity</span>
-                  <span className="detail-value">24K • 99.5%</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="divider"></div>
-
-            <div className="card-section">
-              <h2 className="section-title">Payment Breakdown</h2>
-              
-              <div className="breakdown-list">
-                <div className="breakdown-row">
-                  <span className="breakdown-label">Gold Value</span>
-                  <span className="breakdown-value">₹{rupees.toLocaleString()}</span>
-                </div>
-                
-                <div className="breakdown-row">
-                  <span className="breakdown-label">GST (3%)</span>
-                  <span className="breakdown-value">₹{gst.toFixed(2)}</span>
-                </div>
-                
-                <div className="breakdown-row total-row">
-                  <span className="breakdown-label">Total Amount</span>
-                  <span className="breakdown-value">₹{total.toLocaleString()}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="info-box">
+            <div className="info-box warning-box-top">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="7" stroke="#0369a1" strokeWidth="1.5"/>
-                <path d="M8 7V11M8 5V5.5" stroke="#0369a1" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M8 1L1 15H15L8 1Z" stroke="#d97706" strokeWidth="1.5" strokeLinejoin="round"/>
+                <path d="M8 6V9M8 11V11.5" stroke="#d97706" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
-              <p>Gold will be credited to your account instantly after payment confirmation</p>
+              <span>Price locked for {formatTime(timeLeft)} • Transaction cannot be cancelled once confirmed</span>
             </div>
 
-            <button className="proceed-button" onClick={handleProceed}>
-              Proceed to Payment
-            </button>
-          </div>
+            <div className="details-grid">
+              <div className="card-section">
+                <h2 className="section-title">Order Details</h2>
+                
+                <div className="detail-grid">
+                  <div className="detail-item">
+                    <span className="detail-label">Gold Rate</span>
+                    <span className="detail-value">₹{goldRate.toLocaleString()}/g</span>
+                  </div>
+                  
+                  <div className="detail-item">
+                    <span className="detail-label">Quantity</span>
+                    <span className="detail-value">{grams} grams</span>
+                  </div>
+                  
+                  <div className="detail-item">
+                    <span className="detail-label">Purity</span>
+                    <span className="detail-value">24K • 99.5%</span>
+                  </div>
+                </div>
+              </div>
 
-          <div className="security-info">
-            <div className="security-item">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M10 2L3 5V9C3 13.5 6 17 10 18C14 17 17 13.5 17 9V5L10 2Z" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span>Secure Payment Gateway</span>
+              <div className="card-section">
+                <h2 className="section-title">Payment Breakdown</h2>
+                
+                <div className="breakdown-list">
+                  <div className="breakdown-row">
+                    <span className="breakdown-label">Gold Value</span>
+                    <span className="breakdown-value">₹{rupees.toLocaleString()}</span>
+                  </div>
+                  
+                  <div className="breakdown-row">
+                    <span className="breakdown-label">GST (3%)</span>
+                    <span className="breakdown-value">₹{gst.toFixed(2)}</span>
+                  </div>
+                  
+                  <div className="breakdown-row total-row">
+                    <span className="breakdown-label">Total Amount</span>
+                    <span className="breakdown-value">₹{total.toLocaleString()}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="security-item">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <rect x="3" y="8" width="14" height="9" rx="2" stroke="#666" strokeWidth="1.5"/>
-                <path d="M7 8V6C7 4.34315 8.34315 3 10 3C11.6569 3 13 4.34315 13 6V8" stroke="#666" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-              <span>256-bit Encryption</span>
+
+            <div className="terms-acceptance-inline">
+              <label className="checkbox-container">
+                <input 
+                  type="checkbox" 
+                  checked={isAccepted}
+                  onChange={(e) => setIsAccepted(e.target.checked)}
+                />
+                <span className="checkmark"></span>
+                <span className="checkbox-label">
+                  I agree to the{' '}
+                  <button 
+                    type="button"
+                    className="terms-link" 
+                    onClick={() => setShowTermsModal(true)}
+                  >
+                    Terms & Conditions
+                  </button>
+                </span>
+              </label>
+              {showError && (
+                <div className="error-message-terms">
+                  Please accept the Terms & Conditions to continue
+                </div>
+              )}
             </div>
-            <div className="security-item">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M9 16L4 11L5.5 9.5L9 13L14.5 7.5L16 9L9 16Z" fill="#666"/>
-              </svg>
-              <span>PCI DSS Compliant</span>
-            </div>
+
+            {isPriceLocked ? (
+              <button 
+                className="proceed-button" 
+                onClick={handleProceed}
+              >
+                Proceed to Payment
+              </button>
+            ) : (
+              <button className="refresh-button" onClick={() => onNavigate('buy')}>
+                Get Fresh Price & Try Again
+              </button>
+            )}
           </div>
         </div>
       </div>
+
+      <TermsModal 
+        isOpen={showTermsModal} 
+        onClose={() => setShowTermsModal(false)}
+        flowType="buy"
+      />
     </div>
   );
 };

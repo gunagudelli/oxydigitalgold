@@ -1,0 +1,319 @@
+.bank-account-page {
+  background: var(--bg-primary);
+  min-height: 100vh;
+  padding: 1rem 1.5rem 3rem;
+}
+
+.bank-account-container {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.bank-account-header {
+  margin-bottom: 1.5rem;
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  display: inline-block;
+  transition: color 0.2s;
+}
+
+.back-button:hover {
+  color: var(--text-primary);
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.page-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.bank-form-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.info-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  margin-bottom: 1.75rem;
+}
+
+.info-banner svg {
+  flex-shrink: 0;
+}
+
+.info-banner p {
+  font-size: 0.85rem;
+  color: #0369a1;
+  margin: 0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
+.form-row:has(.form-group:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group.full-width {
+  margin-bottom: 1.5rem;
+}
+
+.form-row .form-group {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.875rem;
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 3px rgba(184, 147, 90, 0.1);
+}
+
+.form-input.error {
+  border-color: var(--error);
+}
+
+.form-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.bank-dropdown-wrapper {
+  position: relative;
+}
+
+.bank-select-container {
+  position: relative;
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.bank-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bank-search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+}
+
+.bank-search svg {
+  flex-shrink: 0;
+}
+
+.bank-search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.bank-search-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.bank-list {
+  overflow-y: auto;
+  max-height: 260px;
+}
+
+.bank-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bank-list::-webkit-scrollbar-track {
+  background: var(--bg-subtle);
+}
+
+.bank-list::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 3px;
+}
+
+.bank-list::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+.bank-item {
+  padding: 0.875rem 1rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.bank-item:last-child {
+  border-bottom: none;
+}
+
+.bank-item:hover {
+  background: var(--bg-subtle);
+}
+
+.bank-item.no-results {
+  color: var(--text-tertiary);
+  cursor: default;
+  text-align: center;
+}
+
+.bank-item.no-results:hover {
+  background: transparent;
+}
+
+.error-text {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--error);
+}
+
+.help-text {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+.security-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: #16a34a;
+}
+
+.security-note svg {
+  flex-shrink: 0;
+}
+
+.security-note span {
+  line-height: 1.4;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: var(--gold-primary);
+  color: var(--bg-surface);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  margin-top: 0.5rem;
+}
+
+.submit-button:hover {
+  background: var(--gold-hover);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .bank-account-page {
+    padding: 1rem;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .bank-form-card {
+    padding: 1.25rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-row .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-input {
+    padding: 0.75rem;
+  }
+
+  .submit-button {
+    padding: 1rem;
+  }
+}
