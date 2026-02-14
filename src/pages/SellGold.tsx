@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/SellGold.css';
 
 interface SellGoldProps {
-  onNavigate: (page: string, data?: any) => void;
+  onDataPass: (data: any) => void;
 }
 
-const SellGold = ({ onNavigate }: SellGoldProps) => {
+const SellGold = ({ onDataPass }: SellGoldProps) => {
+  const navigate = useNavigate();
   const [goldRate, setGoldRate] = useState(16450);
   const sellRate = goldRate - 100; // Sell rate slightly lower
   const availableGold = 5.234; // Mock user balance in grams
@@ -73,13 +75,14 @@ const SellGold = ({ onNavigate }: SellGoldProps) => {
 
     if (error) return;
 
-    onNavigate('sell-summary', {
+    onDataPass({
       amount,
       sellMode,
       sellRate,
       availableGold,
       lockedAt: new Date().toISOString()
     });
+    navigate('/sell-summary');
   };
 
   // Empty state - no gold balance
@@ -88,13 +91,18 @@ const SellGold = ({ onNavigate }: SellGoldProps) => {
       <div className="sell-gold-page">
         <div className="empty-state-container">
           <div className="empty-state-card">
-            <div className="empty-icon">📊</div>
+            <div className="empty-icon">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 21V9"/>
+              </svg>
+            </div>
             <h2 className="empty-title">No Gold Available</h2>
             <p className="empty-message">
               You don't have any gold in your portfolio to sell.
               Start investing today to build your digital gold holdings.
             </p>
-            <button className="empty-cta-btn" onClick={() => onNavigate('buy')}>
+            <button className="empty-cta-btn" onClick={() => navigate('/buy-gold')}>
               Buy Gold Now
             </button>
           </div>
@@ -128,21 +136,21 @@ const SellGold = ({ onNavigate }: SellGoldProps) => {
 
           <div className="trust-box">
             <div className="trust-row">
-              <span className="trust-emoji">⚡</span>
+              <div className="trust-icon">⚡</div>
               <div>
                 <div className="trust-heading">Instant Settlement</div>
-                <div className="trust-subtext">T+1 working day credit</div>
+                <div className="trust-subtext">T+1 working day bank credit</div>
               </div>
             </div>
             <div className="trust-row">
-              <span className="trust-emoji">💰</span>
+              <div className="trust-icon">₹</div>
               <div>
                 <div className="trust-heading">Live Market Rates</div>
                 <div className="trust-subtext">Best prices guaranteed</div>
               </div>
             </div>
             <div className="trust-row">
-              <span className="trust-emoji">🔒</span>
+              <div className="trust-icon">✓</div>
               <div>
                 <div className="trust-heading">Secure & Compliant</div>
                 <div className="trust-subtext">RBI regulated process</div>
@@ -155,7 +163,7 @@ const SellGold = ({ onNavigate }: SellGoldProps) => {
             <ul className="disclaimer-list">
               <li>Minimum sell amount: ₹{MIN_SELL_AMOUNT}</li>
               <li>Rates are market-linked and subject to change</li>
-              <li>Price locked for 15 seconds post-confirmation</li>
+              <li>Price locked for 2 minutes 50 seconds post-confirmation</li>
               <li>Settlement: T+1 working day to registered bank account</li>
               <li>TDS and processing charges applicable as per regulations</li>
             </ul>

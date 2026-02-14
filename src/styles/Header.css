@@ -19,11 +19,21 @@
 .logo {
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--gold-primary);
   cursor: pointer;
   margin: 0;
 }
 
+.logo-oxy {
+  color: #6A0DAD;
+}
+
+.logo-gold {
+  background: linear-gradient(90deg, #D4AF37, #FFD700, #C5A100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: 1px;
+} 
 .nav-menu {
   display: flex;
   gap: 0.5rem;
@@ -33,7 +43,7 @@
   padding: 0.6rem 1.25rem;
   background: transparent;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-secondary);
@@ -48,8 +58,8 @@
 }
 
 .nav-menu button.active {
-  background: var(--text-primary);
-  color: var(--bg-surface);
+  background: var(--btn-primary);
+  color: #fff;
   position: relative;
   box-shadow: var(--shadow-sm);
 }

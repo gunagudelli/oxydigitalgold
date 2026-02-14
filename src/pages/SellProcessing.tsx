@@ -1,19 +1,21 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/SellProcessing.css';
 
 interface SellProcessingProps {
-  onNavigate: (page: string, data?: any) => void;
   sellData: any;
 }
 
-const SellProcessing = ({ onNavigate, sellData }: SellProcessingProps) => {
+const SellProcessing = ({ sellData }: SellProcessingProps) => {
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const timer = setTimeout(() => {
-      onNavigate('sell-success', sellData);
+      navigate('/sell-success');
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [onNavigate, sellData]);
+  }, [navigate]);
 
   return (
     <div className="sell-processing-page">

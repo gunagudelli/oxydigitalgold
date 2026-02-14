@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import './styles/App.css';
 import Header from './components/Header';
@@ -20,69 +21,56 @@ import Portfolio from './pages/Portfolio';
 import FAQ from './pages/FAQ';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('landing');
-  const [transactionData, setTransactionData] = useState(null);
+  const [transactionData, setTransactionData] = useState<any>(null);
 
-  const handleNavigate = (page: string, data?: any) => {
-    if (data) {
-      setTransactionData(data);
-    }
-    setCurrentPage(page);
-    window.scrollTo(0, 0);
-  };
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'landing':
-        return <Landing onNavigate={handleNavigate} />;
-      case 'how-it-works':
-        return <HowItWorks onNavigate={handleNavigate} />;
-      case 'buy':
-        return <BuyGold onNavigate={handleNavigate} />;
-      case 'sell':
-        return <SellGold onNavigate={handleNavigate} />;
-      case 'order-summary':
-        return <OrderSummary onNavigate={handleNavigate} orderData={transactionData} />;
-      case 'payment-method':
-        return <PaymentMethod onNavigate={handleNavigate} paymentData={transactionData} />;
-      case 'payment-processing':
-        return <PaymentProcessing onNavigate={handleNavigate} paymentData={transactionData} />;
-      case 'payment-success':
-        return <PaymentSuccess onNavigate={handleNavigate} transactionData={transactionData} />;
-      case 'payment-details':
-        return <PaymentDetails onNavigate={handleNavigate} transactionData={transactionData} />;
-      case 'sell-summary':
-        return <SellSummary onNavigate={handleNavigate} sellData={transactionData} />;
-      case 'bank-account':
-        return <BankAccount onNavigate={handleNavigate} sellData={transactionData} />;
-      case 'terms-conditions':
-        return <TermsConditions onNavigate={handleNavigate} termsData={transactionData} flowType={transactionData?.flowType || 'buy'} />;
-      case 'sell-processing':
-        return <SellProcessing onNavigate={handleNavigate} sellData={transactionData} />;
-      case 'sell-success':
-        return <SellSuccess onNavigate={handleNavigate} sellData={transactionData} />;
-      case 'portfolio':
-        return <Portfolio onNavigate={handleNavigate} />;
-      case 'faq':
-        return <FAQ onNavigate={handleNavigate} />;
-      default:
-        return <Landing onNavigate={handleNavigate} />;
-    }
+  const handleDataPass = (data: any) => {
+    setTransactionData(data);
   };
 
   return (
-    <div className="app">
-      {!['payment-processing', 'sell-processing'].includes(currentPage) && (
-        <Header 
-          currentPage={currentPage} 
-          onNavigate={handleNavigate}
-        />
-      )}
-      <div className="page-container">
-        {renderPage()}
+    <BrowserRouter>
+      <div className="app">
+        <Routes>
+          <Route path="/payment-processing" element={
+            <div className="page-container">
+              <PaymentProcessing paymentData={transactionData} />
+            </div>
+          } />
+          
+          <Route path="/sell-processing" element={
+            <div className="page-container">
+              <SellProcessing sellData={transactionData} />
+            </div>
+          } />
+          
+          <Route path="/*" element={
+            <>
+              <Header />
+              <div className="page-container">
+                <Routes>
+                  <Route path="/" element={<Landing />} />
+                  <Route path="/how-it-works" element={<HowItWorks />} />
+                  <Route path="/buy-gold" element={<BuyGold onDataPass={handleDataPass} />} />
+                  <Route path="/sell-gold" element={<SellGold onDataPass={handleDataPass} />} />
+                  <Route path="/order-summary" element={<OrderSummary orderData={transactionData} onDataPass={handleDataPass} />} />
+                  <Route path="/payment-method" element={<PaymentMethod paymentData={transactionData} onDataPass={handleDataPass} />} />
+                  <Route path="/payment-success" element={<PaymentSuccess transactionData={transactionData} />} />
+                  <Route path="/payment-details" element={<PaymentDetails transactionData={transactionData} />} />
+                  <Route path="/sell-summary" element={<SellSummary sellData={transactionData} onDataPass={handleDataPass} />} />
+                  <Route path="/bank-account" element={<BankAccount sellData={transactionData} onDataPass={handleDataPass} />} />
+                  <Route path="/terms-conditions" element={<TermsConditions termsData={transactionData} flowType={transactionData?.flowType || 'buy'} />} />
+                  <Route path="/sell-success" element={<SellSuccess sellData={transactionData} />} />
+                  <Route path="/portfolio" element={<Portfolio />} />
+                  <Route path="/faq" element={<FAQ />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </div>
+              <Footer />
+            </>
+          } />
+        </Routes>
       </div>
-      {!['payment-processing', 'sell-processing'].includes(currentPage) && <Footer />}
-    </div>
+    </BrowserRouter>
   );
 }
 

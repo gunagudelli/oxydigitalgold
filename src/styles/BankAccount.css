@@ -45,7 +45,7 @@
 .bank-form-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-light);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   padding: 1.5rem;
 }
 
@@ -105,7 +105,7 @@
   width: 100%;
   padding: 0.875rem;
   border: 1px solid var(--border-medium);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 0.95rem;
   color: var(--text-primary);
   transition: all 0.2s;
@@ -113,8 +113,7 @@
 
 .form-input:focus {
   outline: none;
-  border-color: var(--gold-primary);
-  box-shadow: 0 0 0 3px rgba(184, 147, 90, 0.1);
+  border-color: var(--text-primary);
 }
 
 .form-input.error {
@@ -148,7 +147,7 @@
   right: 0;
   background: var(--bg-surface);
   border: 1px solid var(--border-medium);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 100;
   max-height: 320px;
@@ -269,22 +268,19 @@
 .submit-button {
   width: 100%;
   padding: 1rem 1.5rem;
-  background: var(--gold-primary);
-  color: var(--bg-surface);
+  background: var(--btn-primary);
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   margin-top: 0.5rem;
 }
 
 .submit-button:hover {
-  background: var(--gold-hover);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-  transform: translateY(-1px);
+  background: var(--btn-primary-hover);
 }
 
 @media (max-width: 768px) {

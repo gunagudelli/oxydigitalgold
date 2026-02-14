@@ -1,10 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/Portfolio.css';
 
-interface PortfolioProps {
-  onNavigate: (page: string) => void;
-}
-
-const Portfolio = ({ onNavigate }: PortfolioProps) => {
+const Portfolio = () => {
+  const navigate = useNavigate();
   const goldBalance = 2.45;
   const goldRate = 16450;
   const currentValue = goldBalance * goldRate;
@@ -51,10 +49,10 @@ const Portfolio = ({ onNavigate }: PortfolioProps) => {
         </div>
 
         <div className="action-row">
-          <button className="action-btn primary" onClick={() => onNavigate('buy')}>
+          <button className="action-btn primary" onClick={() => navigate('/buy-gold')}>
             Buy More Gold
           </button>
-          <button className="action-btn secondary" onClick={() => onNavigate('sell')}>
+          <button className="action-btn secondary" onClick={() => navigate('/sell-gold')}>
             Sell Gold
           </button>
         </div>

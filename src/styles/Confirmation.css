@@ -1,5 +1,5 @@
 .confirmation-page {
-  background: #fafafa;
+  background: #fff;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -16,7 +16,7 @@
 .success-icon {
   width: 100px;
   height: 100px;
-  background: #2e7d32;
+  background: var(--success);
   color: #fff;
   border-radius: 50%;
   display: flex;
@@ -80,7 +80,7 @@
 }
 
 .status-success {
-  color: #2e7d32;
+  color: var(--success);
 }
 
 .action-buttons {
@@ -91,7 +91,7 @@
 
 .btn-primary-action {
   padding: 1rem 2rem;
-  background: #1a1a1a;
+  background: var(--btn-primary);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -102,14 +102,14 @@
 }
 
 .btn-primary-action:hover {
-  background: #000;
+  background: var(--btn-primary-hover);
 }
 
 .btn-secondary-action {
   padding: 1rem 2rem;
-  background: #fff;
-  color: #1a1a1a;
-  border: 1px solid #d0d0d0;
+  background: var(--btn-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--btn-secondary-border);
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
@@ -118,8 +118,8 @@
 }
 
 .btn-secondary-action:hover {
-  background: #f5f5f5;
-  border-color: #1a1a1a;
+  background: var(--btn-secondary-hover);
+  border-color: var(--btn-secondary-border-hover);
 }
 
 @media (max-width: 968px) {

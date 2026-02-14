@@ -1,23 +1,27 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Header.css';
 
-interface HeaderProps {
-  currentPage: string;
-  onNavigate: (page: string) => void;
-}
-
-const Header = ({ currentPage, onNavigate }: HeaderProps) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleNavigate = (page: string) => {
-    onNavigate(page);
+  const handleNavigate = (path: string) => {
+    navigate(path);
     setIsMenuOpen(false);
+    window.scrollTo(0, 0);
   };
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <header className="app-header">
       <div className="header-container">
-        <h1 className="logo" onClick={() => handleNavigate('landing')}>OXYGOLD</h1>
+        <h1 className="logo" onClick={() => handleNavigate('/')}>
+          <span className="logo-oxy">OXY</span>
+          <span className="logo-gold">GOLD</span>
+        </h1>
         
         <button 
           className="hamburger-menu" 
@@ -31,32 +35,32 @@ const Header = ({ currentPage, onNavigate }: HeaderProps) => {
 
         <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
           <button 
-            className={currentPage === 'landing' ? 'active' : ''} 
-            onClick={() => handleNavigate('landing')}
+            className={isActive('/') ? 'active' : ''} 
+            onClick={() => handleNavigate('/')}
           >
             Home
           </button>
           <button 
-            className={currentPage === 'how-it-works' ? 'active' : ''} 
-            onClick={() => handleNavigate('how-it-works')}
+            className={isActive('/how-it-works') ? 'active' : ''} 
+            onClick={() => handleNavigate('/how-it-works')}
           >
             How It Works
           </button>
           <button 
-            className={currentPage === 'buy' ? 'active' : ''} 
-            onClick={() => handleNavigate('buy')}
+            className={isActive('/buy-gold') ? 'active' : ''} 
+            onClick={() => handleNavigate('/buy-gold')}
           >
             Buy Gold
           </button>
           <button 
-            className={currentPage === 'portfolio' ? 'active' : ''} 
-            onClick={() => handleNavigate('portfolio')}
+            className={isActive('/portfolio') ? 'active' : ''} 
+            onClick={() => handleNavigate('/portfolio')}
           >
             Portfolio
           </button>
           <button 
-            className={currentPage === 'faq' ? 'active' : ''} 
-            onClick={() => handleNavigate('faq')}
+            className={isActive('/faq') ? 'active' : ''} 
+            onClick={() => handleNavigate('/faq')}
           >
             FAQ
           </button>

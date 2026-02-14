@@ -28,7 +28,7 @@
 .order-summary-sidebar {
   background: #fff;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   padding: 1.5rem;
 }
 
@@ -88,7 +88,7 @@
 .payment-methods-card {
   background: #fff;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   padding: 2rem;
 }
 
@@ -112,7 +112,7 @@
   gap: 1rem;
   padding: 1.25rem;
   border: 1.5px solid #e0e0e0;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -216,10 +216,10 @@
 .pay-button {
   width: 100%;
   padding: 1rem;
-  background: #1a1a1a;
+  background: var(--btn-primary);
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -228,7 +228,7 @@
 }
 
 .pay-button:hover:not(.disabled) {
-  background: #000;
+  background: var(--btn-primary-hover);
 }
 
 .pay-button.disabled {

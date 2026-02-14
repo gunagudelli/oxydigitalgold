@@ -1,20 +1,29 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/PaymentDetails.css';
 
 interface PaymentDetailsProps {
-  onNavigate: (page: string) => void;
   transactionData: {
-    transactionId: string;
-    timestamp: string;
+    transactionId?: string;
+    timestamp?: string;
     grams: string;
     rupees: string;
     gst: string;
     total: string;
     goldRate: number;
-    paymentMethod: string;
+    paymentMethod?: string;
   };
 }
 
-const PaymentDetails = ({ onNavigate, transactionData }: PaymentDetailsProps) => {
+const PaymentDetails = ({ transactionData }: PaymentDetailsProps) => {
+  const navigate = useNavigate();
+  
+  if (!transactionData) {
+    navigate('/buy-gold');
+    return null;
+  }
+  
+  const txnId = transactionData.transactionId || `TXN${Date.now()}`;
+  const txnTime = transactionData.timestamp || new Date().toISOString();
   const formatDate = (isoString: string) => {
     const date = new Date(isoString);
     return date.toLocaleString('en-IN', {
@@ -27,7 +36,8 @@ const PaymentDetails = ({ onNavigate, transactionData }: PaymentDetailsProps) =>
     });
   };
 
-  const getPaymentMethodName = (method: string) => {
+  const getPaymentMethodName = (method?: string) => {
+    if (!method) return 'UPI';
     const methods: { [key: string]: string } = {
       'upi': 'UPI',
       'debit': 'Debit Card',
@@ -41,7 +51,7 @@ const PaymentDetails = ({ onNavigate, transactionData }: PaymentDetailsProps) =>
     <div className="payment-details-page">
       <div className="details-container">
         <div className="details-header">
-          <button className="back-button" onClick={() => onNavigate('portfolio')}>
+          <button className="back-button" onClick={() => navigate('/portfolio')}>
             ← Back to Portfolio
           </button>
           <div className="header-content">
@@ -62,11 +72,11 @@ const PaymentDetails = ({ onNavigate, transactionData }: PaymentDetailsProps) =>
             <div className="receipt-meta">
               <div className="meta-item">
                 <span className="meta-label">Transaction ID</span>
-                <span className="meta-value">{transactionData.transactionId}</span>
+                <span className="meta-value">{txnId}</span>
               </div>
               <div className="meta-item">
                 <span className="meta-label">Date</span>
-                <span className="meta-value">{formatDate(transactionData.timestamp)}</span>
+                <span className="meta-value">{formatDate(txnTime)}</span>
               </div>
             </div>
           </div>
@@ -132,7 +142,7 @@ const PaymentDetails = ({ onNavigate, transactionData }: PaymentDetailsProps) =>
           <button className="action-btn secondary" onClick={() => window.print()}>
             Download Receipt
           </button>
-          <button className="action-btn primary" onClick={() => onNavigate('portfolio')}>
+          <button className="action-btn primary" onClick={() => navigate('/portfolio')}>
             View Portfolio
           </button>
         </div>

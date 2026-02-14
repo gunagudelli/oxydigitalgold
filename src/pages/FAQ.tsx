@@ -1,11 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/FAQ.css';
 
-interface FAQProps {
-  onNavigate: (page: string) => void;
-}
-
-const FAQ = ({ onNavigate }: FAQProps) => {
+const FAQ = () => {
+  const navigate = useNavigate();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
@@ -118,19 +116,19 @@ const FAQ = ({ onNavigate }: FAQProps) => {
           <h2>Security & Trust</h2>
           <div className="trust-grid">
             <div className="trust-card">
-              <h3>🏦Trusted Vault Partners</h3>
+              <h3>Trusted Vault Partners</h3>
               <p>Your gold is stored in certified, insured vaults with regular audits</p>
             </div>
             <div className="trust-card">
-              <h3>🔐Advanced Security</h3>
+              <h3>Advanced Security</h3>
               <p>Bank-grade encryption and multi-factor authentication for account safety</p>
             </div>
             <div className="trust-card">
-              <h3>✓ Compliance</h3>
-              <p>Designed in line with Indian regulatory and RBI guidelines </p>
+              <h3>Compliance</h3>
+              <p>Designed in line with Indian regulatory and RBI guidelines</p>
             </div>
             <div className="trust-card">
-              <h3>📜 Complete Transparency</h3>
+              <h3>Complete Transparency</h3>
               <p>Real-time pricing, detailed transaction history, and instant confirmations</p>
             </div>
           </div>
@@ -139,8 +137,8 @@ const FAQ = ({ onNavigate }: FAQProps) => {
         <div className="cta-section-faq">
           <h2>Still have questions?</h2>
           <p>Start your Gold journey today</p>
-          <button className="cta-button" onClick={() => onNavigate('buy')}>
-Start Your Gold Journey
+          <button className="cta-button" onClick={() => navigate('/buy-gold')}>
+            Start Your Gold Journey
           </button>
         </div>
       </main>

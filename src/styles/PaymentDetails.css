@@ -44,7 +44,7 @@
 .receipt-card {
   background: #fff;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   overflow: hidden;
   margin-bottom: 2rem;
 }
@@ -178,7 +178,7 @@
   flex: 1;
   padding: 1rem 1.5rem;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -192,12 +192,12 @@
 }
 
 .action-btn.primary {
-  background: #1a1a1a;
+  background: var(--btn-primary);
   color: #fff;
 }
 
 .action-btn.primary:hover {
-  background: #000;
+  background: var(--btn-primary-hover);
 }
 
 .action-btn.secondary {

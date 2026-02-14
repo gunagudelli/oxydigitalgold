@@ -1,10 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/Landing.css';
 
-interface LandingProps {
-  onNavigate: (page: string) => void;
-}
-
-const Landing = ({ onNavigate }: LandingProps) => {
+const Landing = () => {
+  const navigate = useNavigate();
   const goldRate = 16450;
 
   return (
@@ -20,7 +18,7 @@ const Landing = ({ onNavigate }: LandingProps) => {
             <span className="price-value">₹{goldRate.toLocaleString()} / gram</span>
             <span className="live-indicator">● LIVE</span>
           </div>
-          <button className="cta-primary" onClick={() => onNavigate('buy')}>
+          <button className="cta-primary" onClick={() => navigate('/buy-gold')}>
             Start Digital Gold Journey
           </button>
         </div>
@@ -59,10 +57,10 @@ const Landing = ({ onNavigate }: LandingProps) => {
           <h2>Ready to begin your digital gold journey?</h2>
           <p>Trusted by thousands for secure gold purchases</p>
           <div className="cta-buttons">
-            <button className="btn-primary" onClick={() => onNavigate('buy')}>
+            <button className="btn-primary" onClick={() => navigate('/buy-gold')}>
               Buy Gold Now
             </button>
-            <button className="btn-secondary" onClick={() => onNavigate('how-it-works')}>
+            <button className="btn-secondary" onClick={() => navigate('/how-it-works')}>
               Learn How It Works
             </button>
           </div>

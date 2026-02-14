@@ -1,13 +1,30 @@
 :root {
   /* Base Colors */
-  --bg-primary: #FAFAF8;
+  --bg-primary: #FFFFFF;
   --bg-surface: #FFFFFF;
   --bg-subtle: #F5F3F0;
   
-  /* Gold Accent - Use Sparingly */
-  --gold-primary: #B8935A;
-  --gold-hover: #A67F4A;
+  /* Gold Accent - Use Sparingly for Brand Elements Only */
+  --gold-primary: #D4AF37;
+  --gold-hover: #C5A100;
   --gold-light: #F8F6F2;
+  
+  /* Violet Accent - Brand Color */
+  --violet-primary: #6A0DAD;
+  --violet-light: #F3E8FF;
+  
+  /* Button Colors - Standardized Across All Screens */
+  --btn-primary: #1a1a1a;
+  --btn-primary-hover: #000000;
+  --btn-secondary: #FFFFFF;
+  --btn-secondary-hover: #F2F0EB;
+  --btn-secondary-border: #D1D5DB;
+  --btn-secondary-border-hover: #1a1a1a;
+  
+  /* Border Radius - Standardized */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
   
   /* Warm Neutrals - Primary UI Colors */
   --neutral-warm: #E8E6E1;
@@ -25,7 +42,7 @@
   --border-medium: #D1D5DB;
   
   /* Feedback Colors */
-  --success: #2E7D32;
+  --success: #2ECC71;
   --success-light: #E8F5E9;
   --error: #C85A54;
   --error-light: #FDECEA;

@@ -1,10 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/HowItWorks.css';
 
-interface HowItWorksProps {
-  onNavigate: (page: string) => void;
-}
-
-const HowItWorks = ({ onNavigate }: HowItWorksProps) => {
+const HowItWorks = () => {
+  const navigate = useNavigate();
   const steps = [
     {
       number: 1,
@@ -83,7 +81,7 @@ const HowItWorks = ({ onNavigate }: HowItWorksProps) => {
 
       <section className="cta-bottom">
         <h2>Ready to get started?</h2>
-        <button className="cta-btn" onClick={() => onNavigate('buy')}>
+        <button className="cta-btn" onClick={() => navigate('/buy-gold')}>
          Start Your Gold Journey Now
         </button>
       </section>

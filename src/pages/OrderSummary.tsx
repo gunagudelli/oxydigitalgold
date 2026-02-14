@@ -1,24 +1,31 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/OrderSummary.css';
 import TermsModal from '../components/TermsModal';
 
 interface OrderSummaryProps {
-  onNavigate: (page: string, data?: any) => void;
   orderData: {
     amount: string;
     buyMode: 'rupees' | 'grams';
     goldRate: number;
   };
+  onDataPass: (data: any) => void;
 }
 
-const OrderSummary = ({ onNavigate, orderData }: OrderSummaryProps) => {
-  const { amount, buyMode, goldRate } = orderData;
-  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes = 300 seconds
+const OrderSummary = ({ orderData, onDataPass }: OrderSummaryProps) => {
+  const navigate = useNavigate();
+  const { amount, buyMode, goldRate } = orderData || {};
+  const [timeLeft, setTimeLeft] = useState(300);
   const [isPriceLocked, setIsPriceLocked] = useState(true);
   const [isAccepted, setIsAccepted] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
   const [showError, setShowError] = useState(false);
   
+  if (!orderData) {
+    navigate('/buy-gold');
+    return null;
+  }
+
   const numAmount = parseFloat(amount);
   
   const grams = buyMode === 'rupees' 
@@ -32,7 +39,6 @@ const OrderSummary = ({ onNavigate, orderData }: OrderSummaryProps) => {
   const gst = rupees * 0.03;
   const total = rupees + gst;
 
-  // Price lock countdown
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft((prev) => {
@@ -63,20 +69,21 @@ const OrderSummary = ({ onNavigate, orderData }: OrderSummaryProps) => {
       return;
     }
     
-    onNavigate('payment-method', {
+    onDataPass({
       grams,
       rupees: rupees.toFixed(2),
       gst: gst.toFixed(2),
       total: total.toFixed(2),
       goldRate
     });
+    navigate('/payment-method');
   };
 
   return (
     <div className="order-summary-page">
       <div className="order-summary-container">
         <div className="order-summary-header">
-          <button className="back-button" onClick={() => onNavigate('buy')}>
+          <button className="back-button" onClick={() => navigate('/buy-gold')}>
             ← Back to Buy Gold
           </button>
           <h1 className="page-title">Review Your Order</h1>
@@ -184,7 +191,7 @@ const OrderSummary = ({ onNavigate, orderData }: OrderSummaryProps) => {
                 Proceed to Payment
               </button>
             ) : (
-              <button className="refresh-button" onClick={() => onNavigate('buy')}>
+              <button className="refresh-button" onClick={() => navigate('/buy-gold')}>
                 Get Fresh Price & Try Again
               </button>
             )}

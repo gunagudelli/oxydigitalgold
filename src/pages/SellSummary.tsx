@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/SellSummary.css';
 import TermsModal from '../components/TermsModal';
 
 interface SellSummaryProps {
-  onNavigate: (page: string, data?: any) => void;
   sellData: {
     amount: string;
     sellMode: 'rupees' | 'grams';
@@ -11,9 +11,17 @@ interface SellSummaryProps {
     availableGold: number;
     lockedAt: string;
   };
+  onDataPass: (data: any) => void;
 }
 
-const SellSummary = ({ onNavigate, sellData }: SellSummaryProps) => {
+const SellSummary = ({ sellData, onDataPass }: SellSummaryProps) => {
+  const navigate = useNavigate();
+  
+  if (!sellData) {
+    navigate('/sell-gold');
+    return null;
+  }
+  
   const { amount, sellMode, sellRate, lockedAt } = sellData;
   const [timeLeft, setTimeLeft] = useState(180); // 3 minutes = 180 seconds
   const [isPriceLocked, setIsPriceLocked] = useState(true);
@@ -67,27 +75,29 @@ const SellSummary = ({ onNavigate, sellData }: SellSummaryProps) => {
     
     setIsProcessing(true);
     
+    onDataPass({
+      grams,
+      rupees: rupees.toFixed(2),
+      processingFee: processingFee.toFixed(2),
+      tds: tds.toFixed(2),
+      finalAmount: finalAmount.toFixed(2),
+      sellRate
+    });
+    
     setTimeout(() => {
-      onNavigate('bank-account', {
-        grams,
-        rupees: rupees.toFixed(2),
-        processingFee: processingFee.toFixed(2),
-        tds: tds.toFixed(2),
-        finalAmount: finalAmount.toFixed(2),
-        sellRate
-      });
+      navigate('/bank-account');
     }, 300);
   };
 
   const handleRefreshPrice = () => {
-    onNavigate('sell');
+    navigate('/sell-gold');
   };
 
   return (
     <div className="sell-summary-page">
       <div className="sell-summary-container">
         <div className="sell-summary-header">
-          <button className="back-button" onClick={() => onNavigate('sell')} disabled={isProcessing}>
+          <button className="back-button" onClick={() => navigate('/sell-gold')} disabled={isProcessing}>
             ← Back to Sell
           </button>
           <h1 className="page-title">Review Sell Order</h1>
@@ -134,7 +144,7 @@ const SellSummary = ({ onNavigate, sellData }: SellSummaryProps) => {
                   
                   <div className="detail-item">
                     <span className="detail-label">Purity</span>
-                    <span className="detail-value">24K • 99.5%</span>
+                    <span className="detail-value">24K • 999</span>
                   </div>
                 </div>
               </div>

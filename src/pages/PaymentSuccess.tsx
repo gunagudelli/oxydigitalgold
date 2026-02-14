@@ -1,17 +1,26 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/PaymentSuccess.css';
 
 interface PaymentSuccessProps {
-  onNavigate: (page: string, data?: any) => void;
   transactionData: {
-    transactionId: string;
-    timestamp: string;
+    transactionId?: string;
+    timestamp?: string;
     grams: string;
     total: string;
-    paymentMethod: string;
+    paymentMethod?: string;
   };
 }
 
-const PaymentSuccess = ({ onNavigate, transactionData }: PaymentSuccessProps) => {
+const PaymentSuccess = ({ transactionData }: PaymentSuccessProps) => {
+  const navigate = useNavigate();
+  
+  if (!transactionData) {
+    navigate('/buy-gold');
+    return null;
+  }
+  
+  const txnId = transactionData.transactionId || `TXN${Date.now()}`;
+  const txnTime = transactionData.timestamp || new Date().toISOString();
   const formatDate = (isoString: string) => {
     const date = new Date(isoString);
     return date.toLocaleString('en-IN', {
@@ -41,11 +50,11 @@ const PaymentSuccess = ({ onNavigate, transactionData }: PaymentSuccessProps) =>
         <div className="transaction-details">
           <div className="detail-row">
             <span className="detail-label">Transaction ID</span>
-            <span className="detail-value">{transactionData.transactionId}</span>
+            <span className="detail-value">{txnId}</span>
           </div>
           <div className="detail-row">
             <span className="detail-label">Date & Time</span>
-            <span className="detail-value">{formatDate(transactionData.timestamp)}</span>
+            <span className="detail-value">{formatDate(txnTime)}</span>
           </div>
           <div className="detail-row">
             <span className="detail-label">Amount Paid</span>
@@ -56,13 +65,13 @@ const PaymentSuccess = ({ onNavigate, transactionData }: PaymentSuccessProps) =>
         <div className="success-actions">
           <button 
             className="action-button primary"
-            onClick={() => onNavigate('payment-details', transactionData)}
+            onClick={() => navigate('/payment-details')}
           >
             View Payment Details
           </button>
           <button 
             className="action-button secondary"
-            onClick={() => onNavigate('portfolio')}
+            onClick={() => navigate('/portfolio')}
           >
             Go to Portfolio
           </button>

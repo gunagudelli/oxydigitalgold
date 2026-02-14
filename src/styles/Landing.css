@@ -17,7 +17,7 @@
 .hero-title {
   font-size: 2.75rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--violet-primary);
   margin-bottom: 0.75rem;
   line-height: 1.2;
 }
@@ -34,7 +34,7 @@
   gap: 1rem;
   background: var(--bg-surface);
   padding: 0.975rem 1.5rem;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-light);
   margin-bottom: 3rem;
   box-shadow: var(--shadow-sm);
@@ -59,21 +59,19 @@
 
 .cta-primary {
   padding: 0.875rem 2rem;
-  background: var(--gold-primary);
-  color: var(--bg-surface);
+  background: var(--btn-primary);
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
-
-  margin-left: 12px; /* 👈 little right move */
 }
 
 
 .cta-primary:hover {
-  background: var(--gold-hover);
+  background: var(--btn-primary-hover);
 }
 
 .why-section {
@@ -88,7 +86,6 @@
 .section-title {
   font-size: 2rem;
   font-weight: 700;
-  font-size: Bold;
   text-align: center;
   margin-bottom: 2.5rem;
   color: var(--text-primary);
@@ -103,7 +100,7 @@
 .feature-card {
   background: var(--bg-surface);
   padding: 1.75rem;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-light);
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -161,10 +158,10 @@
 
 .btn-primary {
   padding: 1rem 2rem;
-  background: var(--gold-primary);
-  color: var(--bg-surface);
+  background: var(--btn-primary);
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -172,15 +169,15 @@
 }
 
 .btn-primary:hover {
-  background: var(--gold-hover);
+  background: var(--btn-primary-hover);
 }
 
 .btn-secondary {
   padding: 1rem 2rem;
-  background: var(--bg-surface);
+  background: var(--btn-secondary);
   color: var(--text-primary);
-  border: 1px solid var(--border-medium);
-  border-radius: 8px;
+  border: 1px solid var(--btn-secondary-border);
+  border-radius: var(--radius-md);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -188,9 +185,8 @@
 }
 
 .btn-secondary:hover {
-  background: var(--beige-light);
-  border-color: var(--neutral-soft);
-  color: var(--text-primary);
+  background: var(--btn-secondary-hover);
+  border-color: var(--btn-secondary-border-hover);
   box-shadow: var(--shadow-hover);
 }
 

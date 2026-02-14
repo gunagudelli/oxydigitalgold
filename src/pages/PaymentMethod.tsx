@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/PaymentMethod.css';
 
 interface PaymentMethodProps {
-  onNavigate: (page: string, data?: any) => void;
   paymentData: {
     grams: string;
     rupees: string;
@@ -10,9 +10,11 @@ interface PaymentMethodProps {
     total: string;
     goldRate: number;
   };
+  onDataPass: (data: any) => void;
 }
 
-const PaymentMethod = ({ onNavigate, paymentData }: PaymentMethodProps) => {
+const PaymentMethod = ({ paymentData, onDataPass }: PaymentMethodProps) => {
+  const navigate = useNavigate();
   const [selectedMethod, setSelectedMethod] = useState<string>('');
 
   const paymentMethods = [
@@ -44,14 +46,15 @@ const PaymentMethod = ({ onNavigate, paymentData }: PaymentMethodProps) => {
       alert('Please select a payment method');
       return;
     }
-    onNavigate('payment-processing', { ...paymentData, paymentMethod: selectedMethod });
+    onDataPass({ ...paymentData, paymentMethod: selectedMethod });
+    navigate('/payment-processing');
   };
 
   return (
     <div className="payment-method-page">
       <div className="payment-method-container">
         <div className="payment-header-section">
-          <button className="back-button" onClick={() => onNavigate('order-summary')}>
+          <button className="back-button" onClick={() => navigate('/order-summary')}>
             ← Back
           </button>
           <h1 className="page-title">Select Payment Method</h1>

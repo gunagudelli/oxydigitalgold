@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/BankAccount.css';
 
 interface BankAccountProps {
-  onNavigate: (page: string, data?: any) => void;
   sellData: any;
+  onDataPass: (data: any) => void;
 }
 
-const BankAccount = ({ onNavigate, sellData }: BankAccountProps) => {
+const BankAccount = ({ sellData, onDataPass }: BankAccountProps) => {
+  const navigate = useNavigate();
   const [accountHolder, setAccountHolder] = useState('');
   const [bankName, setBankName] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
@@ -94,7 +96,7 @@ const BankAccount = ({ onNavigate, sellData }: BankAccountProps) => {
     // Mask account number for display
     const maskedAccount = accountNumber.slice(0, 4) + 'XXXX' + accountNumber.slice(-4);
 
-    onNavigate('sell-processing', {
+    onDataPass({
       ...sellData,
       bankDetails: {
         accountHolder,
@@ -103,13 +105,14 @@ const BankAccount = ({ onNavigate, sellData }: BankAccountProps) => {
         ifscCode: ifscCode.toUpperCase()
       }
     });
+    navigate('/sell-processing');
   };
 
   return (
     <div className="bank-account-page" onClick={() => setShowBankDropdown(false)}>
       <div className="bank-account-container" onClick={(e) => e.stopPropagation()}>
         <div className="bank-account-header">
-          <button className="back-button" onClick={() => onNavigate('sell-summary', sellData)}>
+          <button className="back-button" onClick={() => navigate('/sell-summary')}>
             ← Back
           </button>
           <h1 className="page-title">Add Bank Account</h1>

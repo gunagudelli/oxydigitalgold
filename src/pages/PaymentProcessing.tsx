@@ -1,26 +1,21 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/PaymentProcessing.css';
 
 interface PaymentProcessingProps {
-  onNavigate: (page: string, data?: any) => void;
   paymentData: any;
 }
 
-const PaymentProcessing = ({ onNavigate, paymentData }: PaymentProcessingProps) => {
+const PaymentProcessing = ({ paymentData }: PaymentProcessingProps) => {
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const timer = setTimeout(() => {
-      const transactionId = 'TXN' + Date.now();
-      const timestamp = new Date().toISOString();
-      
-      onNavigate('payment-success', {
-        ...paymentData,
-        transactionId,
-        timestamp
-      });
+      navigate('/payment-details');
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [onNavigate, paymentData]);
+  }, [navigate]);
 
   return (
     <div className="payment-processing-page">

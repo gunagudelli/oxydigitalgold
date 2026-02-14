@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/BuyGold.css';
 
 interface BuyGoldProps {
-  onNavigate: (page: string, data?: any) => void;
+  onDataPass: (data: any) => void;
 }
 
-const BuyGold = ({ onNavigate }: BuyGoldProps) => {
+const BuyGold = ({ onDataPass }: BuyGoldProps) => {
+  const navigate = useNavigate();
   const [buyMode, setBuyMode] = useState<'rupees' | 'grams'>('rupees');
   const [amount, setAmount] = useState('');
   const goldBalance = 2.45;
@@ -18,7 +20,8 @@ const BuyGold = ({ onNavigate }: BuyGoldProps) => {
       return;
     }
     
-    onNavigate('order-summary', { amount, buyMode, goldRate });
+    onDataPass({ amount, buyMode, goldRate });
+    navigate('/order-summary');
   };
 
   return (
@@ -26,7 +29,7 @@ const BuyGold = ({ onNavigate }: BuyGoldProps) => {
       <section className="buy-hero">
         <div className="hero-wrapper">
           <h1>Buy Digital Gold</h1>
-          <p>24K • 99.5% Pure • Secure Vault Storage.</p>
+          <p>24K • 999 Purity • Secure Vault Storage.</p>
           <div className="live-rate-box">
             <span className="rate-text">Live Gold Rate:</span>
             <span className="rate-amount">₹{goldRate.toLocaleString()} / gram</span>
@@ -46,24 +49,24 @@ const BuyGold = ({ onNavigate }: BuyGoldProps) => {
 
           <div className="trust-box">
             <div className="trust-row">
-              <span className="trust-emoji">🔒</span>
+              <div className="trust-icon">🔒</div>
               <div>
-                <div className="trust-heading">Bank-grade security</div>
-                <div className="trust-subtext">Your gold is 100% secure</div>
+                <div className="trust-heading">Bank-Grade Security</div>
+                <div className="trust-subtext">Your gold is 100% secure in insured vaults</div>
               </div>
             </div>
             <div className="trust-row">
-              <span className="trust-emoji">⚡</span>
+              <div className="trust-icon">⚡</div>
               <div>
-                <div className="trust-heading">Instant buy & sell</div>
-                <div className="trust-subtext">Trade anytime at live prices</div>
+                <div className="trust-heading">Instant Trading</div>
+                <div className="trust-subtext">Buy and sell anytime at live market prices</div>
               </div>
             </div>
             <div className="trust-row">
-              <span className="trust-emoji">📊</span>
+              <div className="trust-icon">✓</div>
               <div>
-                <div className="trust-heading">GST included</div>
-                <div className="trust-subtext">No hidden charges</div>
+                <div className="trust-heading">Transparent Pricing</div>
+                <div className="trust-subtext">All taxes and charges included upfront</div>
               </div>
             </div>
           </div>

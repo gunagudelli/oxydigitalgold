@@ -1,14 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/SellSuccess.css';
 
 interface SellSuccessProps {
-  onNavigate: (page: string) => void;
   sellData: {
     grams: string;
     finalAmount: string;
   };
 }
 
-const SellSuccess = ({ onNavigate, sellData }: SellSuccessProps) => {
+const SellSuccess = ({ sellData }: SellSuccessProps) => {
+  const navigate = useNavigate();
+  
+  if (!sellData) {
+    navigate('/sell-gold');
+    return null;
+  }
+  
   const { grams, finalAmount } = sellData;
   const transactionId = `TXN${Date.now().toString().slice(-10)}`;
   const timestamp = new Date().toLocaleString('en-IN', {
@@ -66,10 +73,10 @@ const SellSuccess = ({ onNavigate, sellData }: SellSuccessProps) => {
         </div>
 
         <div className="success-actions">
-          <button className="action-btn primary" onClick={() => onNavigate('portfolio')}>
+          <button className="action-btn primary" onClick={() => navigate('/portfolio')}>
             View Portfolio
           </button>
-          <button className="action-btn secondary" onClick={() => onNavigate('sell')}>
+          <button className="action-btn secondary" onClick={() => navigate('/sell-gold')}>
             Sell More Gold
           </button>
         </div>
