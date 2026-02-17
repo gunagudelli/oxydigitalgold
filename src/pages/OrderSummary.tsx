@@ -130,7 +130,7 @@ const OrderSummary = ({ orderData, onDataPass }: OrderSummaryProps) => {
                   
                   <div className="detail-item">
                     <span className="detail-label">Purity</span>
-                    <span className="detail-value">24K • 99.5%</span>
+                    <span className="detail-value">24K • 999</span>
                   </div>
                 </div>
               </div>

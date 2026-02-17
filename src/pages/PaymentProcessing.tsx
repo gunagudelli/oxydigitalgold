@@ -11,7 +11,7 @@ const PaymentProcessing = ({ paymentData }: PaymentProcessingProps) => {
   
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/payment-details');
+      navigate('/payment-success');
     }, 3000);
 
     return () => clearTimeout(timer);

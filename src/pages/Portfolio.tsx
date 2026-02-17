@@ -32,7 +32,7 @@ const Portfolio = () => {
           <div className="stat-card">
             <div className="stat-label">Total Gold Holdings</div>
             <div className="stat-value">{goldBalance} grams</div>
-            <div className="stat-subtext">24K • 99.5% Pure</div>
+            <div className="stat-subtext">24K • 999 Pure</div>
           </div>
 
           <div className="stat-card">

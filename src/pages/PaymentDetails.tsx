@@ -111,7 +111,7 @@ const PaymentDetails = ({ transactionData }: PaymentDetailsProps) => {
                 </tr>
                 <tr>
                   <td className="table-label">Purity</td>
-                  <td className="table-value">24K • 99.5%</td>
+                  <td className="table-value">24K • 999</td>
                 </tr>
               </tbody>
             </table>
